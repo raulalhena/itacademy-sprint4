@@ -36,10 +36,6 @@ app.get('/user', (req, res) => {
     });
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
-});
-
 app.post('/upload', upload.single('file'), (req, res) => {
     res.send("Se ha subido correctamente.");
 });
