@@ -1,19 +1,28 @@
 import express from 'express';
-import basicAuth from 'basic-auth';
 
 const app = express();
 
 app.use((req, res, next) => {
+      
+    const auth = {
+        login: 'user1', 
+        password: 'pass1'
+    };
+      
+    const b64auth = (req.headers.authorization || '').split(' ')[1] || '';
+    const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':');
     
-    next();
+    if (login && password && login === auth.login && password === auth.password) {
+        return next();
+    }
+    
+    res.set('WWW-Authenticate', 'Basic realm="401"');
+    res.status(401).send('Requiere autenticación.');
+      
 });
 
-function noAuth(req) {
-    return req.auth ? ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected') : 'No credentials provided';
-}
-
 app.get('/', (req, res) =>{
-    res.send('Hey, acceso correcto!');
+    res.send('Acceso permitido!');
 });
 
 app.listen(3000, () => {

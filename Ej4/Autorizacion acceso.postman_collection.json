@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "463fb760-85d1-4897-9180-6d14ac3b3056",
+		"name": "Autorizacion acceso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Autorizacion usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
